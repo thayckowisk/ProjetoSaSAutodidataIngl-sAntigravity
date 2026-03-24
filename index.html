@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EngFluence - Chat & Game AI</title>
-    <!-- PWA Manifest -->
+    <title>EngFluence - AI English Tutor</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b1121">
     
@@ -16,35 +15,24 @@
 
     <!-- Login Screen -->
     <div id="loginScreen" class="login-wrapper">
-        <div class="login-background-orbs">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-        </div>
+        <div class="login-background-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
         <div class="login-card glass-panel">
             <div class="logo-large">
                 <i data-lucide="brain-circuit" class="logo-icon-lg"></i>
                 <h1>EngFluence</h1>
             </div>
-            <p class="login-subtitle">Bem-vindo de volta! Acesse sua conta.</p>
-            
+            <p class="login-subtitle">Acesso de Aluno</p>
             <form id="loginForm" class="login-form">
-                <div class="input-group">
-                    <i data-lucide="mail" class="input-icon"></i>
-                    <input type="email" id="emailInput" placeholder="Seu e-mail" required>
-                </div>
-                <div class="input-group">
-                    <i data-lucide="lock" class="input-icon"></i>
-                    <input type="password" id="passwordInput" placeholder="Sua senha" required>
-                </div>
+                <div class="input-group"><i data-lucide="mail" class="input-icon"></i><input type="email" id="emailInput" placeholder="Seu e-mail" required></div>
+                <div class="input-group"><i data-lucide="lock" class="input-icon"></i><input type="password" id="passwordInput" placeholder="Sua senha" required></div>
                 <button type="submit" class="primary-btn w-full login-btn">Entrar na Sala</button>
             </form>
             <p class="login-hint">Dica: Qualquer email serve (App Demo)</p>
         </div>
     </div>
 
-    <!-- Main App Layout (Hidden until Login) -->
+    <!-- Main App Layout -->
     <div id="appLayout" class="app-layout hidden">
-        <!-- Sidebar Backdrop for Mobile -->
         <div id="sidebarBackdrop" class="sidebar-backdrop hidden"></div>
 
         <!-- Sidebar -->
@@ -57,17 +45,17 @@
             
             <nav class="sidebar-nav">
                 <button id="navChatBtn" class="nav-item active">
-                    <i data-lucide="message-square"></i>
-                    <span>Modo Conversa</span>
+                    <i data-lucide="message-square"></i><span>Chat & Fala</span>
                 </button>
                 <button id="navGameBtn" class="nav-item">
-                    <i data-lucide="gamepad-2"></i>
-                    <span>Game Tradução</span>
+                    <i data-lucide="gamepad-2"></i><span>Vocabulário</span>
+                </button>
+                <button id="navReadBtn" class="nav-item">
+                    <i data-lucide="book-open"></i><span>Leitura & Gramática</span>
                 </button>
                 <div class="nav-divider"></div>
                 <button id="settingsBtn" class="nav-item">
-                    <i data-lucide="settings"></i>
-                    <span>Configurações API</span>
+                    <i data-lucide="settings"></i><span>Configurações API</span>
                     <span id="keyStatusIndicator" class="status-dot red"></span>
                 </button>
             </nav>
@@ -77,29 +65,18 @@
                     <i data-lucide="lightbulb" class="info-icon"></i>
                     <p>A IA atua como seu professor nativo, identificando seu nível de 1 a 8.</p>
                 </div>
-                <div class="shortcuts-card glass-panel hidden-mobile">
-                    <h4>Atalhos Úteis</h4>
-                    <ul>
-                        <li><kbd>Enter</kbd> Enviar</li>
-                        <li><kbd>Click</kbd> 🎤 Gravar</li>
-                        <li><kbd>Click</kbd> 🔊 Ouvir</li>
-                    </ul>
-                </div>
             </div>
             
             <div class="sidebar-footer">
-                <button id="logoutBtn" class="nav-item text-red">
-                    <i data-lucide="log-out"></i> Sair da Conta
-                </button>
+                <button id="logoutBtn" class="nav-item text-red"><i data-lucide="log-out"></i> Sair da Conta</button>
             </div>
         </aside>
 
-        <!-- Main Content Area -->
         <main class="main-content">
             
             <!-- Chat View -->
             <div id="chatView" class="view-container">
-                <header class="chat-header glass-panel border-bottom">
+                <header class="view-header glass-panel border-bottom">
                     <div class="header-title">
                         <button class="icon-btn hamburger-btn hidden"><i data-lucide="menu"></i></button>
                         <i data-lucide="bot" class="ai-avatar-icon"></i>
@@ -109,18 +86,14 @@
                         </div>
                     </div>
                     <div class="header-actions">
-                        <button id="clearChatBtn" class="icon-btn" title="Limpar conversa">
-                            <i data-lucide="trash-2"></i>
-                        </button>
+                        <button id="clearChatBtn" class="icon-btn" title="Limpar conversa"><i data-lucide="trash-2"></i></button>
                     </div>
                 </header>
 
                 <div id="chatMessages" class="chat-messages">
                     <div class="message ai-message">
                         <div class="avatar"><i data-lucide="bot"></i></div>
-                        <div class="message-content glass-panel">
-                            <p>Hello! 👋 Digite ou fale uma frase em inglês para começarmos a praticar.</p>
-                        </div>
+                        <div class="message-content glass-panel"><p>Hello! 👋 Digite ou fale uma frase em inglês para começarmos a praticar.</p></div>
                     </div>
                 </div>
 
@@ -130,23 +103,17 @@
 
                 <div class="chat-input-area glass-panel">
                     <div class="input-wrapper">
-                        <button id="recordBtn" class="icon-btn mic-btn" title="Ativar áudio">
-                            <i data-lucide="mic"></i>
-                        </button>
+                        <button id="recordBtn" class="icon-btn mic-btn" title="Ativar áudio"><i data-lucide="mic"></i></button>
                         <textarea id="userInput" placeholder="Digite sua frase inglesa..." rows="1"></textarea>
-                        <button id="submitBtn" class="submit-btn primary-btn" title="Enviar resposta">
-                            <i data-lucide="send"></i>
-                        </button>
+                        <button id="submitBtn" class="submit-btn primary-btn" title="Enviar resposta"><i data-lucide="send"></i></button>
                     </div>
-                    <div id="recordingStatus" class="recording-status hidden">
-                        <span class="pulsing-dot"></span> Ouvindo...
-                    </div>
+                    <div id="recordingStatus" class="recording-status hidden"><span class="pulsing-dot"></span> Ouvindo...</div>
                 </div>
             </div>
 
             <!-- Game View -->
             <div id="gameView" class="view-container hidden">
-                <header class="chat-header glass-panel border-bottom">
+                <header class="view-header glass-panel border-bottom">
                     <div class="header-title">
                         <button class="icon-btn hamburger-btn hidden"><i data-lucide="menu"></i></button>
                         <i data-lucide="gamepad-2" class="ai-avatar-icon bg-orange"></i>
@@ -168,41 +135,93 @@
                         </select>
                     </div>
                 </header>
-
                 <div class="game-content">
                     <div class="score-board">
                         <div class="score-pill green-pill">Acertos: <strong id="scoreCorrect">0</strong></div>
                         <div class="score-pill red-pill">Erros: <strong id="scoreWrong">0</strong></div>
                     </div>
-
-                    <div id="gameCard" class="game-card glass-panel text-center">
-                        <div id="gameLoading" class="loading-container hidden">
-                            <div class="spinner"></div> <p>Gerando desafio...</p>
-                        </div>
-                        
-                        <div id="gameRunning" class="game-running-content">
+                    <div id="gameCard" class="card-hero glass-panel text-center">
+                        <div id="gameLoading" class="loading-container hidden"><div class="spinner"></div> <p>Gerando desafio...</p></div>
+                        <div id="gameRunning" class="game-running-content hidden">
                             <p class="game-instruction">Como se traduz esta palavra/expressão?</p>
                             <div class="word-wrapper">
                                 <h2 id="targetWord" class="target-word">...</h2>
                                 <button id="playTargetAudioBtn" class="icon-btn play-audio-lg" title="Ouvir"><i data-lucide="volume-2"></i></button>
                             </div>
-                            
                             <div id="gameOptions" class="game-options">
                                 <button id="opt1" class="game-btn glass-panel">Opção 1</button>
                                 <button id="opt2" class="game-btn glass-panel">Opção 2</button>
                             </div>
-                            
                             <div id="gameFeedback" class="game-feedback hidden">
                                 <h4 id="feedbackText">Correto!</h4>
                                 <button id="nextRoundBtn" class="primary-btn w-full mt-1">Próxima Palavra <i data-lucide="arrow-right"></i></button>
                             </div>
                         </div>
-
                         <div id="gameStartSect">
                             <i data-lucide="swords" class="game-hero-icon"></i>
-                            <h3>Pronto para testar seu vocabulário?</h3>
+                            <h3>Teste seu vocabulário</h3>
                             <p>Selecione seu nível no menu superior e clique em iniciar.</p>
                             <button id="startGameBtn" class="primary-btn mt-1 w-full">Começar Jogo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Read View -->
+            <div id="readView" class="view-container hidden">
+                <header class="view-header glass-panel border-bottom">
+                    <div class="header-title">
+                        <button class="icon-btn hamburger-btn hidden"><i data-lucide="menu"></i></button>
+                        <i data-lucide="book-open" class="ai-avatar-icon bg-purple"></i>
+                        <div class="title-texts">
+                            <h3>Leitura Guiada</h3>
+                            <span class="online-status">Preencha as lacunas!</span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <select id="readLevelSelect" class="level-select">
+                            <option value="INGLÊS 1">Inglês 1</option>
+                            <option value="INGLÊS 2">Inglês 2</option>
+                            <option value="INGLÊS 3">Inglês 3</option>
+                            <option value="INGLÊS 4">Inglês 4</option>
+                            <option value="INGLÊS 5">Inglês 5</option>
+                            <option value="INGLÊS 6">Inglês 6</option>
+                            <option value="INGLÊS 7">Inglês 7</option>
+                            <option value="INGLÊS 8">Inglês 8</option>
+                        </select>
+                    </div>
+                </header>
+                <div class="game-content">
+                    <div id="readCard" class="card-hero glass-panel wide-card text-center">
+                        <div id="readLoading" class="loading-container hidden"><div class="spinner"></div> <p>Escrevendo texto...</p></div>
+                        <div id="readRunning" class="game-running-content hidden">
+                            <div class="read-header-actions">
+                                <div><i data-lucide="headphones" class="text-purple"></i> <span class="game-instruction">Leia e ouça o texto.</span></div>
+                                <button id="playReadTextBtn" class="icon-btn play-audio-lg" title="Ouvir Texto"><i data-lucide="volume-2"></i></button>
+                            </div>
+                            <p id="clozeTextDisplay" class="cloze-text">O texto carregará aqui com uma lacuna _____ para você preencher.</p>
+                            
+                            <h4 class="mt-2 game-instruction text-left">Qual regra gramatical completa a frase?</h4>
+                            <div id="readOptions" class="game-options">
+                                <button id="readOpt1" class="game-btn glass-panel text-capitalize">Opção 1</button>
+                                <button id="readOpt2" class="game-btn glass-panel text-capitalize">Opção 2</button>
+                                <button id="readOpt3" class="game-btn glass-panel text-capitalize">Opção 3</button>
+                            </div>
+                            
+                            <div id="readFeedback" class="game-feedback hidden">
+                                <h4 id="readFeedbackTitle">Correto!</h4>
+                                <div class="grammar-review-box glass-panel mt-1 text-left">
+                                    <strong><i data-lucide="graduation-cap"></i> Regra Gramatical:</strong>
+                                    <p id="readExplanationText">A explicação aparecerá aqui.</p>
+                                </div>
+                                <button id="nextReadBtn" class="primary-btn w-full mt-1">Gerar Novo Texto <i data-lucide="arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div id="readStartSect">
+                            <i data-lucide="book" class="game-hero-icon text-purple"></i>
+                            <h3>Interpretação e Gramática</h3>
+                            <p>A IA gerará um texto dinâmico para seu nível contendo uma lacuna. Suas escolhas testarão sua leitura, áudio e gramática de uma vez só!</p>
+                            <button id="startReadBtn" class="primary-btn mt-1 w-full bg-purple">Gerar Texto</button>
                         </div>
                     </div>
                 </div>
@@ -218,7 +237,7 @@
                 <h2>Chave da OpenAI</h2>
                 <button id="closeModalBtn" class="icon-btn"><i data-lucide="x"></i></button>
             </div>
-            <p>Para o funcionamento da IA no seu dispositivo, insira sua chave da OpenAI. Ela ficará salva localmente.</p>
+            <p>Insira sua chave da OpenAI. Ela ficará salva localmente.</p>
             <input type="password" id="apiKeyInput" placeholder="sk-..." class="api-input">
             <div class="modal-actions">
                 <button id="saveKeyBtn" class="primary-btn w-full">Salvar Chave</button>
@@ -228,8 +247,6 @@
 
     <script src="curriculum.js"></script>
     <script src="app.js"></script>
-    <script>
-      lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
