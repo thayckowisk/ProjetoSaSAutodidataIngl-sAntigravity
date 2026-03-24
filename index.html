@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngFluence - Chat AI Tutor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i data-lucide="brain-circuit" class="logo-icon"></i>
+                <h2>EngFluence</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active">
+                    <i data-lucide="message-square"></i>
+                    <span>Modo Conversa</span>
+                </button>
+                <div class="nav-divider"></div>
+                <button id="settingsBtn" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>Configurações</span>
+                    <span id="keyStatusIndicator" class="status-dot red"></span>
+                </button>
+            </nav>
+
+            <div class="sidebar-info-container">
+                <div class="info-card glass-panel">
+                    <i data-lucide="lightbulb" class="info-icon"></i>
+                    <p>Digite ou fale em inglês. A IA atua como seu professor nativo, identificando seu nível de 1 a 8.</p>
+                </div>
+                
+                <div class="shortcuts-card glass-panel">
+                    <h4>Atalhos Úteis</h4>
+                    <ul>
+                        <li><kbd>Enter</kbd> Enviar mensagem</li>
+                        <li><kbd>Click</kbd> 🎤 Gravar áudio</li>
+                        <li><kbd>Click</kbd> 🔊 Ouvir correção</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header glass-panel border-bottom">
+                <div class="header-title">
+                    <i data-lucide="bot" class="ai-avatar-icon"></i>
+                    <div>
+                        <h3>Professor EngFluence</h3>
+                        <span class="online-status">Online e ouvindo</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="clearChatBtn" class="icon-btn" title="Limpar conversa">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div id="chatMessages" class="chat-messages">
+                <!-- Welcome Message -->
+                <div class="message ai-message">
+                    <div class="avatar"><i data-lucide="bot"></i></div>
+                    <div class="message-content glass-panel">
+                        <p>Hello! 👋 Digite ou fale uma frase em inglês para começarmos a praticar. Eu vou corrigir seus erros e sugerir o que você deve estudar para avançar de nível!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+            </div>
+
+            <div class="chat-input-area glass-panel">
+                <div class="input-wrapper">
+                    <button id="recordBtn" class="icon-btn mic-btn" title="Ativar áudio">
+                        <i data-lucide="mic"></i>
+                    </button>
+                    <textarea id="userInput" placeholder="Digite sua frase em inglês aqui..." rows="1"></textarea>
+                    <button id="submitBtn" class="submit-btn primary-btn" title="Enviar resposta">
+                        <i data-lucide="send"></i>
+                    </button>
+                </div>
+                <div id="recordingStatus" class="recording-status hidden">
+                    <span class="pulsing-dot"></span> Ouvindo...
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- API Key Modal -->
+    <div id="apiKeyModal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>Configurações</h2>
+                <button id="closeModalBtn" class="icon-btn"><i data-lucide="x"></i></button>
+            </div>
+            <p>Para o funcionamento da IA no seu navegador, insira sua chave da OpenAI. Ela ficará salva no seu LocalStorage seguro.</p>
+            <input type="password" id="apiKeyInput" placeholder="sk-..." class="api-input">
+            <div class="modal-actions">
+                <button id="saveKeyBtn" class="primary-btn w-full">Salvar Chave</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Removed module to fix local execution CORS block -->
+    <script src="curriculum.js"></script>
+    <script src="app.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>
